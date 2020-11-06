@@ -1,0 +1,71 @@
+
+
+<title>教师管理</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a><cite>用户</cite></a>
+        <a><cite>教师管理</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-useradminrole-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    角色筛选
+                </div>
+                <div class="layui-inline">
+                    <select name="teachername" lay-filter="LAY-user-adminrole-type">
+                        <option value="-1">全部角色</option>
+                        <option value="0">管理员</option>
+                        <option value="1">超级管理员</option>
+                        <option value="2">纠错员</option>
+                        <option value="3">采购员</option>
+                        <option value="4">推销员</option>
+                        <option value="5">运营人员</option>
+                        <option value="6">编辑</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-teacher" data-type="batchdel">删除</button>
+                <button class="layui-btn layuiadmin-btn-teacher" data-type="add">添加</button>
+            </div>
+
+            <table id="LAY-user-back-teacher" lay-filter="LAY-user-back-teacher"></table>
+            <script type="text/html" id="buttonTpl">
+                {{#  if(d.check == true){ }}
+                <button class="layui-btn layui-btn-xs">已审核</button>
+                {{#  } else { }}
+                <button class="layui-btn layui-btn-primary layui-btn-xs">未审核</button>
+                {{#  } }}
+            </script>
+            <script type="text/html" id="table-useradmin-admin">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    layui.use(['table',form],function () {
+        var table =layui.table ,form =layui.form
+        table.render({
+            elem:'LAY-user-back-teacher',
+            url:'./json/useradmin/teacher.js',
+            cols:[[
+                    {field:'id',title:'ID',width:80,sort:true,fixed:'left'},
+                {field:'rolename',title:'用户名',width:120 }
+                ]
+            ]
+        })
+    })
+
+</script>
